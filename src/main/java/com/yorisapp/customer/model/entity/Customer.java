@@ -13,10 +13,10 @@ import javax.validation.constraints.NotNull;
 @Table(name = "cu_customer")
 public class Customer extends BaseConfigurationEntity {
     @NotNull (message = "El nombre completo no puede ser nulo")
-    @Column(name = "name", length = 60)
+    @Column(name = "nombre", length = 60)
     private String name;
 
     @NotNull (message = "El el número de teléfono/celular no puede ser nulo")
-    @Column(name = "phone", length = 12)
+    @Column(name = "telefono", length = 12)
     private String phone;
 }

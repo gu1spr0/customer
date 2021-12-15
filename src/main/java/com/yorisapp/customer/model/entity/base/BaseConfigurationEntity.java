@@ -21,7 +21,7 @@ public class BaseConfigurationEntity implements Serializable {
     @PastOrPresent(message = "La fecha de alta del registro debe ser actual")
     @NotNull(message = "La fecha de alta del registro no debe ser nula")
     @Column(name = "fecha_alta")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
     @NotNull(message = "El usuario que dió de alta el registro no debe ser nula")
@@ -29,14 +29,14 @@ public class BaseConfigurationEntity implements Serializable {
     private Long createdBy;
 
     @Column(name = "fecha_baja")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
     @Column(name = "usuario_baja")
     private Long deletedBy;
 
     @Column(name = "fecha_modificacion", nullable = true)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
     @Column(name = "usuario_modificacion", nullable = true)

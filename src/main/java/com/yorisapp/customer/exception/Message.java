@@ -13,6 +13,7 @@ public class Message {
         // Entitys 101-150
         put(MessageDescription.repeated, new ExceptionResponse("101","Existe un registro activo con el %s: %s", "detalle -_-"));
         put(MessageDescription.notExists, new ExceptionResponse("102","No se encontró %s con el %s: %s", "detalle -_-"));
+        put(MessageDescription.notExists, new ExceptionResponse("103","Inserción incorrecta", "detalle -_-"));
         // contraseñas  251-300
         put(MessageDescription.incorrectPass, new ExceptionResponse("251","Contraseña incorrecta.", "detalle -_-"));
         // Usuarios 301-350

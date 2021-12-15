@@ -14,11 +14,9 @@ import javax.validation.constraints.NotNull;
 public class Customer extends BaseConfigurationEntity {
     @NotNull (message = "El nombre completo no puede ser nulo")
     @Column(name = "name", length = 60)
-    @Min(value = 10)
     private String name;
 
     @NotNull (message = "El el número de teléfono/celular no puede ser nulo")
     @Column(name = "phone", length = 12)
-    @Min(value = 6)
     private String phone;
 }

@@ -52,8 +52,8 @@ public class BaseConfigurationEntity implements Serializable {
         if (createdDate == null) {
             createdDate = now;
             //createdBy = Security.getUserOfAuthenticatedUser();
-            // createdBy = 0L;
-            // state = Constants.STATE_ACTIVE;
+            createdBy = 0L;
+            state = Constants.STATE_ACTIVE;
             }
         }
 

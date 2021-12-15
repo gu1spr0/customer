@@ -27,6 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerQueryPageableDto getCustomersPageable(String pState, int pPage, int pRowsNumber) {
         CustomerQueryPageableDto vCustomerQueryPageableDto = new CustomerQueryPageableDto();
+        List<CustomerQueryDto> vCustomerQueryDtoList = new ArrayList<>();
         if(Strings.isNullOrEmpty(pState)){
             throw Message.GetBadRequest(MessageDescription.stateNullOrEmpty);
         }
@@ -37,7 +38,6 @@ public class CustomerServiceImpl implements CustomerService {
         long vTotalRows = customerRepository.getCountCustomersByState(pState);
         if (vTotalRows>0){
             List<Customer> vCustomerList = customerRepository.getCustomersPageableByState(pState, PageRequest.of(pPage, pRowsNumber));
-            List<CustomerQueryDto> vCustomerQueryDtoList = new ArrayList<>();
             for(Customer vCustomer: vCustomerList){
                 CustomerQueryDto vCustomerQueryDto = new CustomerQueryDto();
                 BeanUtils.copyProperties(vCustomer, vCustomerQueryDto);
@@ -47,13 +47,23 @@ public class CustomerServiceImpl implements CustomerService {
             vCustomerQueryPageableDto.setCustomerQueryDtoList(vCustomerQueryDtoList);
         }else{
             vCustomerQueryPageableDto.setTotalRows(0);
+
         }
         return vCustomerQueryPageableDto;
     }
 
     @Override
     public CustomerQueryDto addCustomer(CustomerAddDto pCustomerAddDto) {
-        return null;
+        Customer vCustomer = new Customer();
+        Customer vResponse = new Customer();
+        BeanUtils.copyProperties(pCustomerAddDto, vCustomer);
+        vResponse = this.customerRepository.save(vCustomer);
+        if(vResponse == null){
+            throw Message.GetBadRequest(MessageDescription.notInsert);
+        }
+        CustomerQueryDto vCustomerQueryDto = new CustomerQueryDto();
+        BeanUtils.copyProperties(vResponse, vCustomerQueryDto);
+        return vCustomerQueryDto;
     }
 
     @Override

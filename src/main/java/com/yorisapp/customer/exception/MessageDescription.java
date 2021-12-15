@@ -9,6 +9,7 @@ public enum MessageDescription {
     // Entidades 101-150
     repeated,
     notExists,
+    notInsert,
     // Carga Masiva 151-200
     // contraseñas  251-300
     incorrectPass,
